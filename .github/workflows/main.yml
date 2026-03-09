@@ -26,6 +26,6 @@ jobs:
           AI_API_KEY: ${{secrets.API_KEY}}
           EMAIL_SENDER: ${{secrets.EMAIL_SENDER}}
           EMAIL_RECEIVER: ${{secrets.EMAIL_RECEIVER}}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_PASSWORD: ${{secrets.SMTP_PASSWORD}}
 
         run: python main.py
