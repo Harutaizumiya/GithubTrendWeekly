@@ -89,10 +89,10 @@ def send_email(report_content):
 
     # 注意：如果你使用的是 Outlook 或 Gmail，請確認 SMTP 地址和端口
     # Gmail: smtp.gmail.com | Outlook: smtp.office365.com
-    smtp_server = "smtp.qq.com"
+    smtp_server = "smtp.163.com"
 
     try:
-        with smtplib.SMTP_SSL(smtp_server, 465) as server:
+        with smtplib.SMTP_SSL(smtp_server, 994) as server:
             server.login(EMAIL_SENDER, SMTP_PASSWORD)
             server.send_message(msg)
         print("簡報已成功發送至郵箱！")
