@@ -19,7 +19,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests dotenv smtplib
+        run: pip install requests dotenv 
 
       - name: Run script
         env:
