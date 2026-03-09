@@ -1,0 +1,23 @@
+name: Test Email Env
+
+on: 
+  workflow_dispatch:
+
+
+jobs:
+  test_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Run Test Script
+        env:
+          # 这一步至关重要：将 Secret 映射到脚本能看到的变量名
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        run: python test_env.py
