@@ -1,6 +1,5 @@
 import datetime
 import requests
-from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 import os
 import smtplib
@@ -91,17 +90,12 @@ def send_email(report_content):
     # 注意：如果你使用的是 Outlook 或 Gmail，請確認 SMTP 地址和端口
     # Gmail: smtp.gmail.com | Outlook: smtp.office365.com
     smtp_server = "smtp.qq.com"
-    smtp_port = 587  # 改用 587 端口
 
     try:
-        # 使用標準 SMTP
-        server = smtplib.SMTP(smtp_server, smtp_port)
-        server.set_debuglevel(1)  # 開啟調試模式，方便在 GitHub Actions 日誌中看到具體報錯
-        server.starttls()  # 升級為安全連接
-        server.login(EMAIL_SENDER, SMTP_PASSWORD)
-        server.send_message(msg)
-        server.quit()
-        print("簡報已成功發送！")
+        with smtplib.SMTP_SSL(smtp_server, 465) as server:
+            server.login(EMAIL_SENDER, SMTP_PASSWORD)
+            server.send_message(msg)
+        print("簡報已成功發送至郵箱！")
     except Exception as e:
         print(f"郵件發送失敗: {e}")
 
