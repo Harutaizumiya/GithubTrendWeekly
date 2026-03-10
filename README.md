@@ -48,6 +48,9 @@ git clone https://github.com/Harutaizumiya/GithubTrendWeekly.git
 pip install -r requirement.txt
 ```
 
+### 获取SMTP授权码
+https://zhuanlan.zhihu.com/p/1933936404255191138
+
 ### 配置环境变量
 
 在项目根目录创建 `.env` 文件，配置以下变量：
@@ -124,3 +127,7 @@ smtp_server = "smtp.office365.com"
 
 默认使用通义千问 `qwen-flash` 模型，可根据需要在 `ai_analyze()` 函数中调整。
 
+### 遗憾
+本来这个程序应该跑在GithubAction上实现方便的完全自动化，
+可能是因为阿里api拒绝GitHub发出的请求，本人尝试了很多次都没成功，
+目前只能在本机或者服务器上使用
