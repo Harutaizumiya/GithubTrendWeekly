@@ -23,7 +23,7 @@ GitHub Trend Weekly 是一个自动化工具，每周为你智能分析 GitHub �
 
 ### ✨ 核心功能
 
-- 🔍 **智能检索** - 自动获取上周 GitHub 热门项目（按星标排序）
+- 🔍 **检索** - 自动获取上周 GitHub 热门项目（按星标排序）
 - 🤖 **AI 分析** - 使用通义千问深度分析项目技术亮点和核心价值
 - 📧 **邮件推送** - 每周自动发送 HTML 格式报告
 
@@ -35,11 +35,17 @@ GitHub Trend Weekly 是一个自动化工具，每周为你智能分析 GitHub �
 ### 环境要求
 
 - Python 3.11+
+- 一台电脑（最好是服务器）
+
+### 克隆代码
+```bash
+git clone https://github.com/Harutaizumiya/GithubTrendWeekly.git
+```
 
 ### 安装依赖
 
 ```bash
-pip install requests beautifulsoup4 python-dotenv
+pip install -r requirement.txt
 ```
 
 ### 配置环境变量
@@ -62,6 +68,15 @@ SMTP_PASSWORD=your_smtp_password
 python main.py
 ```
 
+### 定时任务
+十分推荐在自己的服务器上部署，然后定时执行
+```bash
+crontab -e
+
+#在尾行写入，每周一上午8：30执行，根据实际文件位置替换
+30 8 * * 1 /usr/bin/python3 /code/python/GithubTrendWeekly/main.py >> /code/python/GithubTrendWeekly/cron_log.log 2>&1
+```
+
 ---
 
 ## 📋 功能详情
@@ -81,7 +96,7 @@ python main.py
 
 ### 3. 邮件发送
 
-- 支持 QQ 邮箱 SMTP 服务
+- 支持 163 邮箱 SMTP 服务
 - 自动将 HTML 内容嵌入邮件
 - 每周定时推送趋势报告
 
@@ -91,9 +106,9 @@ python main.py
 
 ### 邮箱服务
 
-默认使用 QQ 邮箱 SMTP：
-- 服务器：`smtp.qq.com`
-- 端口：`465`
+默认使用 163 邮箱 SMTP：
+- 服务器：`smtp.163.com`
+- 端口：`994`
 
 如需使用其他邮箱服务，请修改 `send_email()` 函数中的 `smtp_server` 变量：
 
@@ -109,23 +124,3 @@ smtp_server = "smtp.office365.com"
 
 默认使用通义千问 `qwen-flash` 模型，可根据需要在 `ai_analyze()` 函数中调整。
 
----
-
-## 📦 依赖项
-
-- `requests` - HTTP 请求库
-- `beautifulsoup4` - HTML 解析（预留）
-- `python-dotenv` - 环境变量管理
-
----
-
-## 📄 许可证
-
-MIT License
-
----
-
-<div align="center">
-
-
-</div>
